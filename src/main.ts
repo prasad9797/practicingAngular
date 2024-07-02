@@ -1,19 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import 'zone.js';
+import { AppComponent } from './app/app/app.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
+  imports: [AppComponent],
   template: `
-    <h1>Hello from {{ name }}!</h1>
-    <a target="_blank" href="https://angular.dev/overview">
-      Learn more about Angular
-    </a>
+    <app-app/>
   `,
 })
 export class App {
   name = 'Angular';
 }
 
-bootstrapApplication(App);
+bootstrapApplication(App,{
+  providers: [
+    importProvidersFrom(CommonModule)
+  ]
+});
